@@ -1,0 +1,36 @@
+server:
+  port: 8066
+spring:
+  datasource:
+    druid:
+      stat-view-servlet:
+        login-username: druid
+        loginPassword: druid
+    dynamic:
+      druid:
+        initial-size: 10
+        min-idle: 10
+        max-active: 20
+      primary: master
+      datasource:
+        master:
+          url: jdbc:postgresql://172.20.32.27:5432/xj?useUnicode=true&characterEncoding=utf8&useSSL=false
+          username: postgres
+          password: Sailing@123
+          driver-class-name: org.postgresql.Driver
+        slave:
+          url: jdbc:oracle:thin:@172.20.32.83:1521/orcl
+          username: bsitsqp
+          password: bsitsqp
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+      p6spy: true
+
+#配置定时任务执行时间
+cron: 0 0 4 * * ?
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+logging:
+  level:
+    com:
+     baomodou: debug
